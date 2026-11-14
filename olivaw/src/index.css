@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700;800&display=swap');
+
+:root {
+  /* Paleta "Terminal Cero" - Estética Hardware/CLI */
+  --bg-main: #0D1117;          /* Fondo asfalto profundo */
+  --bg-surface: #161B22;       /* Superficie de tarjetas/paneles */
+  --border-dim: #30363D;       /* Wireframe y divisiones */
+  
+  --text-main: #C9D1D9;        /* Blanco hueso, reduce fatiga visual */
+  --text-muted: #8B949E;       /* Metadatos */
+  
+  --alert-mod: #58A6FF;        /* Azul terminal para eventos regulares */
+  --alert-crit: #F85149;       /* Rojo técnico (lavado, no brillante) */
+  --brand-color: #E6EDF3;      /* Color puro para el logo */
+
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-ui);
+  
+  /* Textura Topográfica de Red (Grid CSS Nativo) */
+  background-image: 
+    linear-gradient(rgba(48, 54, 61, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(48, 54, 61, 0.25) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-attachment: fixed;
+}
+
+/* --- LOGO Y BRANDING --- */
+.brand-title {
+  font-family: var(--font-code);
+  font-weight: 800;
+  color: var(--brand-color);
+  letter-spacing: 0.05em;
+}
+
+.brand-bracket {
+  color: var(--border-dim);
+}
+
+.brand-node {
+  color: var(--alert-mod);
+}
+
+/* --- TARJETAS DE HARDWARE (WIRE-FRAMED) --- */
+.card-olivaw {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-dim);
+  border-radius: 4px; /* Bordes mucho más cuadrados, estilo panel */
+  box-shadow: 0 4px 12px rgba(0,0,0, 0.2);
+  transition: border-color 0.2s;
+}
+
+.card-olivaw:hover {
+  border-color: #484F58;
+}
+
+/* Tarjeta Crítica: Mismo fondo, pero con marco rojo técnico y un "ribbon" lateral grueso */
+.card-olivaw-critico {
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(248, 81, 73, 0.3);
+  border-left: 4px solid var(--alert-crit);
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(248, 81, 73, 0.05);
+}
+
+/* --- BUSCADOR ESTILO CLI --- */
+.input-olivaw {
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-dim) !important;
+  border-radius: 2px;
+  font-family: var(--font-code);
+  font-size: 0.85rem;
+}
+
+.input-olivaw:focus {
+  border-color: var(--alert-mod) !important;
+  box-shadow: inset 0 0 0 1px var(--alert-mod) !important; /* Glow interno en lugar de externo */
+  outline: none;
+}
+
+.input-olivaw::placeholder {
+  color: var(--text-muted);
+}
+
+/* --- MACRO-ARQUITECTURA (GRID) --- */
+.olivaw-layout {
+  display: grid;
+  /* 1. Radar (280px) | 2. Feed Central (Fluido) | 3. Táctico (300px) */
+  grid-template-columns: 280px 1fr 300px;
+  /* 1. Header (auto) | 2. Zona de Paneles (Resto del espacio) */
+  grid-template-rows: auto 1fr;
+  height: 100vh; 
+  overflow: hidden; /* Prohibido el scroll global */
+  background-color: var(--bg-main);
+}
+
+.olivaw-header-zone {
+  grid-column: 1 / -1; /* El header cruza las 3 columnas de lado a lado */
+  background-color: var(--bg-main);
+  padding: 0 1rem;
+}
+
+.olivaw-panel {
+  border-right: 1px solid var(--border-dim);
+  overflow-y: auto; /* Scroll independiente por columna */
+  padding: 1.5rem;
+  /* Scrollbar minimalista para mantener la estética limpia */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-dim) transparent;
+}
+
+.olivaw-panel:last-child {
+  border-right: none;
+}
+
+/* El panel central tiene el fondo ligeramente más claro para atraer el foco visual */
+.olivaw-panel-center {
+  background-color: var(--bg-surface);
+}

@@ -1,11 +1,11 @@
 const Buscador = ({ busqueda, setBusqueda }) => {
   return (
-    <div className="row mb-4">
-      <div className="col-md-6 offset-md-3">
+    <div className="row mb-5 pb-2">
+      <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
         <input 
           type="text" 
-          className="form-control bg-dark text-white border-secondary" 
-          placeholder="Filtrar por ID o por título de la alerta..."
+          className="form-control form-control-lg input-olivaw px-4" 
+          placeholder="BUSCAR ID O TÍTULO DE ALERTA..."
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
         />
